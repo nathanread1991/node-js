@@ -1,6 +1,12 @@
-const fs = require("fs");
+// const add = require("./utils.js")
+
+// const sum = add(22, 44);
+
+// console.log(sum);
 
 
-fs.writeFileSync("notes.js", "My Name is Nathan Read");
-fs.appendFileSync("notes.js", "\nim appending to the file");
+const notes = require("./notes.js");
 
+const myNotes = notes();
+
+console.log(myNotes)

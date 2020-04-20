@@ -1,2 +1,5 @@
-My Name is Nathan Read
-im appending to the file
+const getNotes = function(){
+    return ("these are my notes");
+}
+
+module.exports = getNotes
