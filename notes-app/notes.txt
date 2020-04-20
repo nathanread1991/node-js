@@ -1,0 +1,4 @@
+nodemon allows the program to auto re-run when changes are made
+to install: npm install -g nodemon
+
+
