@@ -3,47 +3,57 @@
 // const sum = add(22, 44);
 
 // console.log(sum);
-
-
-const notes = require("./notes.js");
-
-const myNotes = notes();
-
-console.log(myNotes)
-
-var validator = require('validator');
 const chalk = require('chalk');
+const yargs = require('yargs');
 
+yargs.version('V1.1.0')
 
-const email = "nathanread.1991@gmail.comx"
-const isEmail = validator.isEmail(email);
+yargs.command({
+    command: ["add","-a","ADD","a"],
+    describe: "add a new note",
+    builder: {
+        title:{
+            describe: "Note Title",
+            alias: ["t", "TITLE"],
+            demandOption: true,
+            type: "string"
+        },
+        body:{
+            describe: "Note Body",
+            alias: ["b", "BODY"],
+            demandOption: true,
+            type: "string"
+        }
+    },
+    handler: function(argv){
+        console.log("Title: ", argv.title)
+        console.log("Body: ", argv.body)
+    }
+    
+})
 
-console.log("you entered " + email + " as your email")
-console.log("email valid = " + isEmail)
+yargs.command({
+    command: "remove",
+    describe: "remove note",
+    handler: function(){
+        console.log("removing note")
+    } 
+})
 
+yargs.command({
+    command: "list",
+    describe: "list notes",
+    handler: function(){
+        console.log("listing notes")
+    } 
+})
 
-if(isEmail){
-    console.log(chalk.bgGreenBright("Email is valid"));
-}
-else{
-    console.log(chalk.bgRedBright("Email is Invalid"));
-}
+yargs.command({
+    command: "read",
+    describe: "read note",
+    handler: function(){
+        console.log("reading note")
+    } 
+})
 
-
-const command = process.argv[2];
-
-if (command === "add"){
-    console.log("you want to add a new note")
-
-}
-else if ( command === "delete"){
-    console.log("you want to delete a note");
-}
-else if (command === "modify"){
-    console.log("you want to modify a note");
-}
-else{
-    console.log(chalk.bgRedBright("error")+ " please enter one of the folling options: \"add\", \"delete\", or \"modify\"");
-}
-
-console.log(process.argv[2]);
+yargs.parse();
